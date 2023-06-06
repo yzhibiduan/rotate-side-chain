@@ -8,6 +8,22 @@ import warnings
 from Bio import BiopythonWarning
 import argparse
 
+
+########################## 文件输入与参数控制区 ################################
+pdb_file = 'test.pdb' #输入文件
+residue_id = 405                  #残基号
+chain_id = 'A'                    #残基所在的链
+chi1 = 1                          #是否旋转chi1二面角 1旋转 0不旋转
+chi2 = 0                          #是否旋转chi2二面角 1旋转 0不旋转
+chi3 = 0                          #是否旋转chi3二面角 1旋转 0不旋转
+chi4 = 0                          #是否旋转chi4二面角 1旋转 0不旋转
+chi5 = 0                          #是否旋转chi5二面角 1旋转 0不旋转
+interval_degree_chi1 = 50         #chi1二面角采样间隔
+interval_degree_chi2 = 50         #chi2二面角采样间隔
+interval_degree_chi3 = 50         #chi3二面角采样间隔
+interval_degree_chi4 = 50         #chi4二面角采样间隔
+interval_degree_chi5 = 50         #chi5二面角采样间隔
+###############################################################
 # 创建 ArgumentParser 对象
 parser = argparse.ArgumentParser(description='这是一个对单个残基旋转侧链二面角的简单脚本，旋转后可能会发生原子碰撞等问题，请仔细使用。\n'
                                              '运行环境python==3.9 biopython==1.81 numpy==1.21.2，其他环境未经过测试。\n'
@@ -32,21 +48,6 @@ parser.add_argument('-itv5', '--interval_degree_chi5', type=int, help='Chi5 Dihe
 # 解析命令行选项和参数
 args = parser.parse_args()
 
-########################## 文件输入与参数控制区 ################################
-pdb_file = 'test.pdb' #输入文件
-residue_id = 405                  #残基号
-chain_id = 'A'                    #残基所在的链
-chi1 = 1                          #是否旋转chi1二面角 1旋转 0不旋转
-chi2 = 0                          #是否旋转chi2二面角 1旋转 0不旋转
-chi3 = 0                          #是否旋转chi3二面角 1旋转 0不旋转
-chi4 = 0                          #是否旋转chi4二面角 1旋转 0不旋转
-chi5 = 0                          #是否旋转chi5二面角 1旋转 0不旋转
-interval_degree_chi1 = 50         #chi1二面角采样间隔
-interval_degree_chi2 = 50         #chi2二面角采样间隔
-interval_degree_chi3 = 50         #chi3二面角采样间隔
-interval_degree_chi4 = 50         #chi4二面角采样间隔
-interval_degree_chi5 = 50         #chi5二面角采样间隔
-###############################################################
 if args.input is not None  :
     if args.residue_id is None or args.chain_id is None or args.interval_degree_chi5 is None or args.interval_degree_chi4 is None or args.interval_degree_chi3 is None or args.interval_degree_chi2 is None or args.chi1 is None or args.chi5 is None or args.chi4 is None or args.chi3 is None :
         print("参数不全。")
